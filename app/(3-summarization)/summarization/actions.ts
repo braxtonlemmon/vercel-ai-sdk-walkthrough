@@ -3,13 +3,6 @@
 import { generateText, Output } from "ai";
 import { z } from "zod";
 
-// TODO: Define the structure for our summary
-// Create a Zod schema with these fields:
-// - headline (string)
-// - context (string)
-// - discussionPoints (string)
-// - takeaways (string)
-
 const summarySchema = z.object({
   headline: z
     .string()
