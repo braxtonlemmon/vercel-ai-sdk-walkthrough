@@ -3,6 +3,7 @@ import {
   convertToModelMessages,
   createUIMessageStreamResponse,
   toUIMessageStream,
+  isStepCount,
 } from "ai";
 import { getWeather } from "./tools";
 
@@ -21,6 +22,7 @@ export async function POST(req: Request) {
   If a question is outside your knowledge area, politely redirect to contact@techcorp.com.`,
       messages: await convertToModelMessages(messages),
       tools: { getWeather },
+      stopWhen: isStepCount(2),
     });
 
     return createUIMessageStreamResponse({

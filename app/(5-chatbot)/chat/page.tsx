@@ -24,6 +24,7 @@ import {
   PromptInputTextarea,
   PromptInputSubmit,
 } from "@/components/ai-elements/prompt-input";
+import Weather from "./weather";
 
 export default function Chat() {
   const [input, setInput] = useState("");
@@ -55,6 +56,21 @@ export default function Chat() {
                             );
                           case "tool-getWeather":
                             // Replace the raw JSON with Elements components
+                            if (
+                              part.state === "output-available" &&
+                              part.output
+                            ) {
+                              console.log("tag this", part.output);
+                              return (
+                                <Weather
+                                  weatherData={
+                                    part.output as Parameters<
+                                      typeof Weather
+                                    >[0]["weatherData"]
+                                  }
+                                />
+                              );
+                            }
                             return (
                               <Tool
                                 key={part.toolCallId || `${message.id}-${i}`}

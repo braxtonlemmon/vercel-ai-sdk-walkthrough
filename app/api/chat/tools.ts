@@ -34,6 +34,7 @@ export const getWeather = tool({
       city,
       temperature: weatherData.current.temperature_2m,
       weatherCode: weatherData.current.weathercode,
+      humidity: weatherData.current.humidity ?? 50, // Default to 50 if not provided
     };
   },
 });
